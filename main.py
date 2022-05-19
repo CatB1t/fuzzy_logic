@@ -35,12 +35,20 @@ def fuzzify(fuzzy_sets, crisp_value):
 
     return memberships
 
-def defuzzify(memberships, fuzzy_sets):
-    pass
+def defuzzify(fuzzy_sets, memberships):
+    assert len(fuzzy_sets) == len(memberships), "Lists must be equal length"
+
+    memberships_sum = 0
+    for i in range(len(fuzzy_sets)):
+        centroid = sum(fuzzy_sets[i]) / len(fuzzy_sets[i])
+        memberships_sum += centroid * memberships[i]
+
+    return memberships_sum / sum(memberships)
+
 
 coreTemp = [[0, 0, 40], [30, 35, 45, 50], [40, 80, 80]]
 print(fuzzify(coreTemp, 45))  # The output will be [0,1,0.125]
 
 fanSpeed = [[0,0,2500], [1000,2500,4000], [2500, 5000, 5000]]
 fanMemDegrees = [0,0,0.333]
-print(defuzzify(fanSpeed, fanMemDegrees))
+print(defuzzify(fanSpeed, fanMemDegrees)) # The output will be 4166
