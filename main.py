@@ -14,7 +14,7 @@ def fuzzify(fuzzy_sets, crisp_value):
                 if f_set[0] == f_set[1] or f_set[-1] == f_set[-2]:
                     d_y = (-1 if f_set[0] == f_set[1] else 1)
                     d_x = f_set[-1] - f_set[0]
-                    memberships.append(y_triangle(d_y, d_x, 0.5, f_set[1]))
+                    memberships.append(y_triangle(d_y, d_x, f_set[1], 1))
                 # Isosceles triangle
                 else:
                     if crisp_value >= f_set[1]:
@@ -57,11 +57,11 @@ def defuzzify(fuzzy_sets, memberships):
 
 def assignment_test_cases():
     coreTemp = [[0, 0, 40], [30, 35, 45, 50], [40, 80, 80]]
-    print(fuzzify(coreTemp, 45))  # The output will be [0,1,0.125]
+    print("Fuzzification: {}".format(fuzzify(coreTemp, 45)))  # The output will be [0,1,0.125]
 
     fanSpeed = [[0, 0, 2500], [1000, 2500, 4000], [2500, 5000, 5000]]
     fanMemDegrees = [0, 0, 0.333]
-    print(defuzzify(fanSpeed, fanMemDegrees))  # The output will be 4166
+    print("Defuzzification: {}".format(defuzzify(fanSpeed, fanMemDegrees))) # The output will be 4166
 
 
 def project_test_cases():
@@ -73,5 +73,7 @@ def project_test_cases():
     print("Defuzzification: {}".format(defuzzify(healthy, memberships)))
 
 
+print("=== Assignment Test Cases ===")
 assignment_test_cases()
+print("=== Project Test Cases ===")
 project_test_cases()
