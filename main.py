@@ -64,7 +64,6 @@ def assignment_test_cases():
     print(defuzzify(fanSpeed, fanMemDegrees))  # The output will be 4166
 
 
-#
 def project_test_cases():
     systolic_blood_pressure = [[80, 100, 120], [110, 120, 130], [125, 150, 175, 200]]
     print("Fuzzification: {}".format(fuzzify(systolic_blood_pressure, 100)))
@@ -74,4 +73,5 @@ def project_test_cases():
     print("Defuzzification: {}".format(defuzzify(healthy, memberships)))
 
 
+assignment_test_cases()
 project_test_cases()
